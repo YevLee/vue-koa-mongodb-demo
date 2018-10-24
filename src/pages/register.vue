@@ -13,6 +13,7 @@
     </div>
 </template>
 <script>
+	import axios from "../axios/apis/userModule.js"
 export default {
   data(){
 		return{
@@ -23,7 +24,9 @@ export default {
 	methods:{
 		RegisterSubmit(e){
 			e.preventDefault();
-			console.log(222)
+			//axios.post(data).then((res)=>{
+				//console.log(res)
+			//})
 		}
 	}
 };

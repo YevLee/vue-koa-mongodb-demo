@@ -13,6 +13,8 @@
 	</div>
 </template>
 <script>
+	import axios from "../axios/apis/userModule.js"
+	//console.log(axios);
 	export default {
 		data() {
 			return {
@@ -20,27 +22,37 @@
 				password: ""
 			}
 		},
+		mounted(){
+			//测试一个api接口get方式
+			axios.testApi().then((res)=>{
+				console.log(res)
+			})
+		},
 		methods: {
 			loginSubmit(e) {
 				e.preventDefault();
-				if (userName == "" || password == "") {
+				if (this.userName == "" || this.password == "") {
 					this.$message({
 						type: "info",
-						massage: "请输入用户名或密码！"
+						message: "请输入用户名或密码！"
 					});
 					return false;
 				} else {
 					if (this.userName != "123") {
 						this.$message({
 							type: "info",
-							massage: "登陆失败"
+							message: "登陆失败"
 						});
 					} else {
 						this.$message({
 							type: "info",
-							massage: "登陆成功！"
+							message: "登陆成功！"
 						});
 						localStorage.setItem("token", this.userName);
+						//指定一个错误的路由,使得登陆之后跳到权限页面
+						this.$router.push({
+							path: "/home"
+						})
 					}
 				}
 			}
